@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink text-cream font-sans antialiased overflow-x-hidden;
+  }
+
+  ::selection {
+    background: rgba(198, 161, 91, 0.35);
+    color: #f6f2ea;
+  }
+
+  :focus-visible {
+    outline: 1px solid rgba(198, 161, 91, 0.8);
+    outline-offset: 4px;
+  }
+
+  /* Тонкий фирменный скроллбар */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2620;
+    border: 3px solid #0a0a0b;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4d4232;
+  }
+
+  @media (pointer: fine) {
+    body[data-cursor='on'],
+    body[data-cursor='on'] a,
+    body[data-cursor='on'] button,
+    body[data-cursor='on'] input,
+    body[data-cursor='on'] textarea,
+    body[data-cursor='on'] label {
+      cursor: none;
+    }
+
+    /* нативный список «Юридическая услуга» — обычный курсор, чтобы выпадашка работала привычно */
+    body[data-cursor='on'] select,
+    body[data-cursor='on'] option {
+      cursor: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Тонкая золотая линия-разделитель */
+  .gold-rule {
+    @apply block h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent;
+  }
+
+  /* Рамка-хайрлайн вокруг блоков на тёмном */
+  .hairline-frame {
+    @apply border border-gold/15;
+  }
+
+  /* Архивная обработка портретов: дуотон с тёплой сепией */
+  .img-archival {
+    filter: grayscale(1) sepia(0.34) contrast(1.06) brightness(0.9);
+  }
+
+  /* Кинематографическая тонировка hero-изображения */
+  .img-cinema {
+    filter: brightness(0.55) contrast(1.18) saturate(0.62) sepia(0.14);
+  }
+
+  /* Буквица-надпись реестра «ДЕЛО № …» */
+  .registry-label {
+    @apply font-sans text-[11px] uppercase tracking-registry text-gold/70;
+  }
+
+  .display-tight {
+    @apply font-display font-medium leading-[0.94] tracking-[-0.015em];
+  }
+}
+
+@layer utilities {
+  /* Плёночное зерно поверх всей страницы */
+  .grain::after {
+    content: '';
+    position: fixed;
+    inset: -50%;
+    z-index: 70;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.045;
+    animation: grain-shift 1.1s steps(3) infinite;
+  }
+
+  @keyframes grain-shift {
+    0% {
+      transform: translate(0, 0);
+    }
+    33% {
+      transform: translate(-3%, 2%);
+    }
+    66% {
+      transform: translate(2%, -3%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grain::after {
+      animation: none;
+    }
+  }
+
+  /* Свечение кнопки */
+  .btn-glow {
+    box-shadow:
+      0 0 0 1px rgba(198, 161, 91, 0.4),
+      0 8px 40px -8px rgba(198, 161, 91, 0.45),
+      inset 0 0 22px rgba(198, 161, 91, 0.08);
+  }
+
+  /* Прорисовка галочки подтверждения формы */
+  .draw-stroke {
+    stroke-dasharray: 64;
+    stroke-dashoffset: 64;
+    animation: draw-stroke 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  }
+  @keyframes draw-stroke {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
