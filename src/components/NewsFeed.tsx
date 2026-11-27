@@ -31,7 +31,7 @@ export function NewsFeed() {
 
   useEffect(() => {
     let alive = true;
-    fetch('/news.json')
+    fetch('/data.json?t=' + Date.now())
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((data: NewsItem[]) => {
         if (alive && Array.isArray(data)) setItems(data);

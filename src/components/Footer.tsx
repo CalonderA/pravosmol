@@ -131,9 +131,6 @@ export function Footer() {
         <div className="mt-6 flex flex-col gap-3 text-[12px] text-fog md:flex-row md:items-center md:justify-between">
           <p>© {year} ПРАВО-СМОЛ. Все права защищены.</p>
           <div className="flex flex-wrap gap-6">
-            <Link to="/admin" className="transition-colors hover:text-gold-soft">
-              Админ-панель
-            </Link>
             <Link to="/legal" className="transition-colors hover:text-gold-soft">
               Политика конфиденциальности
             </Link>

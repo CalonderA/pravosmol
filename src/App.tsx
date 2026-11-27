@@ -6,7 +6,6 @@ import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { Preloader } from './components/Preloader';
 import { LUXE } from './components/motion';
-import Admin from './pages/Admin';
 import Home from './pages/Home';
 import Legal from './pages/Legal';
 import Practice from './pages/Practice';
@@ -45,7 +44,6 @@ function AnimatedRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/practice/:slug" element={<Practice />} />
           <Route path="/legal" element={<Legal />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

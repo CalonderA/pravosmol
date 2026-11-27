@@ -27,13 +27,14 @@ export function ConsultationForm({
   const [errors, setErrors] = useState<Partial<Record<keyof Fields | 'consent', string>>>({});
   const [consent, setConsent] = useState(false);
   const [state, setState] = useState<'idle' | 'sending' | 'done'>('idle');
+  const [apiError, setApiError] = useState('');
 
   const set = (key: keyof Fields) => (e: { target: { value: string } }) => {
     setFields((f) => ({ ...f, [key]: e.target.value }));
     setErrors((er) => ({ ...er, [key]: undefined }));
   };
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault();
     const er: typeof errors = {};
     if (fields.name.trim().length < 2) er.name = 'Укажите, как к вам обращаться';
@@ -44,8 +45,36 @@ export function ConsultationForm({
     if (Object.keys(er).length > 0) return;
 
     setState('sending');
-    // демо-сценарий: на production здесь уходит запрос в CRM фирмы
-    window.setTimeout(() => setState('done'), 900);
+
+    // На хостинге pravo-smol.ru заявка уходит на PHP-обработчик api.php
+    // (письмо на info@pravo-smol.ru). На статических зеркалах (GitHub Pages,
+    // локальный просмотр) api.php отсутствует — включается демо-сценарий.
+    try {
+      const res = await fetch('/api.php?action=send_lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fields.name.trim(),
+          phone: fields.phone.trim(),
+          email: fields.email.trim(),
+          message: `${fields.service ? `Услуга: ${fields.service}. ` : ''}${fields.message.trim()}`,
+          consent: true,
+        }),
+      });
+      const json = res.ok ? await res.json().catch(() => null) : null;
+      if (json?.success) {
+        setState('done');
+        return;
+      }
+      if (json?.error) {
+        setApiError(json.error + ' Позвоните нам: 8 (920) 662-90-31 — примем заявку по телефону.');
+        setState('idle');
+        return;
+      }
+    } catch {
+      // api.php недоступен — статическое зеркало, показываем демо-подтверждение
+    }
+    window.setTimeout(() => setState('done'), 600);
   };
 
   const inputCls =
@@ -153,6 +182,12 @@ export function ConsultationForm({
                 />
               </Field>
             </div>
+
+            {apiError && (
+              <p className="mt-6 border border-[#d98a6a]/50 bg-[#d98a6a]/10 px-5 py-4 text-[13.5px] leading-relaxed text-[#e8a990]">
+                {apiError}
+              </p>
+            )}
 
             {/* согласие на обработку персональных данных */}
             <div className="mt-8">
