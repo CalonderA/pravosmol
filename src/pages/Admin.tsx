@@ -140,7 +140,10 @@ export default function Admin() {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.message ?? `Ошибка GitHub: ${res.status}`);
     }
-    return res.json();
+    const json = await res.json();
+    // обновляем sha, чтобы следующее действие не упало с конфликтом версий
+    if (json?.content?.sha) setSha(json.content.sha);
+    return json;
   };
 
   const publish = async (e: FormEvent) => {
