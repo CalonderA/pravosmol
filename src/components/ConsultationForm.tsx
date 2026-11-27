@@ -74,7 +74,7 @@ export function ConsultationForm({
             </svg>
             <p className="mt-8 font-display text-3xl text-cream">Заявка принята</p>
             <p className="mt-4 max-w-[42ch] text-sm leading-relaxed text-fog">
-              Юрист ПРАВОСМОЛ свяжется с вами в течение 15 минут в рабочее время и предложит
+              Юрист ПРАВО-СМОЛ свяжется с вами в течение 15 минут в рабочее время и предложит
               удобный формат разговора — в офисе, по телефону или в мессенджере.
             </p>
             <p className="mt-6 font-display text-lg italic text-gold-soft">

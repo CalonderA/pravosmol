@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { ArrowGlyph, GoldButton } from '../components/Buttons';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { Counter } from '../components/Counter';
+import { NewsFeed } from '../components/NewsFeed';
 import { Particles } from '../components/Particles';
 import { RoleIcon } from '../components/RoleIcon';
 import {
@@ -29,7 +30,7 @@ import { cn } from '../lib/utils';
 
 export default function Home() {
   useSeo(
-    'ПРАВОСМОЛ — юридические услуги в Смоленске | Юрист, адвокат',
+    'ПРАВО-СМОЛ — юридические услуги в Смоленске | Юрист, адвокат',
     'Профессиональная юридическая помощь в Смоленске: защита в суде, гражданские и уголовные дела, арбитраж, трудовые и семейные споры. 12 лет опыта, 180+ выигранных дел, ответ за 15 минут.',
   );
 
@@ -42,6 +43,7 @@ export default function Home() {
       <Practices />
       <WhyUs />
       <Team />
+      <NewsFeed />
       <Stats />
       <Process />
       <Testimonials />
@@ -167,7 +169,7 @@ function Hero({ goTo }: { goTo: (hash: string) => void }) {
           transition={{ duration: 1.6, ease: LUXE, delay: 2.25 }}
           className="mt-10 font-display text-[clamp(1.9rem,3.4vw,2.8rem)] font-semibold text-cream"
         >
-          ПРАВОСМОЛ
+          ПРАВО-СМОЛ
         </motion.h1>
 
         <p className="mt-8 font-display text-[clamp(2.5rem,5.6vw,4.8rem)] leading-[1.04] text-cream">
@@ -282,7 +284,7 @@ function About() {
           <div className="lg:col-span-4 lg:col-start-9">
             <Reveal>
               <p className="font-sans text-[15px] leading-relaxed text-onyx/80">
-                ПРАВОСМОЛ — юридическая фирма из Смоленска с двенадцатилетним опытом в праве. Мы
+                ПРАВО-СМОЛ — юридическая фирма из Смоленска с двенадцатилетним опытом в праве. Мы
                 защищаем граждан и организации: в судах, на переговорах, в спорах с ведомствами и
                 работодателями.
               </p>
@@ -455,7 +457,7 @@ function WhyUs() {
                 <em className="italic text-gold-deep">предоставлены.</em>»
               </blockquote>
               <p className="mt-8 text-[12px] uppercase tracking-wide2 text-clay">
-                Девиз фирмы ПРАВОСМОЛ
+                Девиз фирмы ПРАВО-СМОЛ
               </p>
               <p className="mt-10 max-w-[38ch] font-sans text-[14px] leading-relaxed text-clay">
                 С этих слов начинается каждое новое дело. Всё остальное — стратегия, гонорары,
@@ -618,7 +620,7 @@ function Stats() {
         className="pointer-events-none absolute -right-40 top-1/3 h-[480px] w-[480px] rounded-full bg-gold/[0.05] blur-[120px]"
       />
       <div className="relative mx-auto max-w-shell px-6 py-24 lg:px-10 lg:py-36">
-        <RegistryLabel index="05" title="Фирма в цифрах" />
+        <RegistryLabel index="06" title="Фирма в цифрах" />
 
         <div className="mt-16 grid gap-y-16 lg:mt-24 lg:grid-cols-12 lg:gap-x-10">
           {STATS.map((s, i) => (
@@ -653,7 +655,7 @@ function Process() {
       <div className="mx-auto max-w-shell px-6 py-24 lg:px-10 lg:py-36">
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <RegistryLabel index="06" title="Этапы работы с клиентами" tone="light" />
+            <RegistryLabel index="07" title="Этапы работы с клиентами" tone="light" />
             <h2 className="mt-12 display-tight text-[clamp(2.2rem,4.6vw,4rem)]">
               <LinesUpOnScroll
                 lines={[
@@ -740,7 +742,7 @@ function Testimonials() {
       <div className="mx-auto max-w-shell px-6 py-24 lg:px-10 lg:py-36">
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <RegistryLabel index="07" title="Отзывы клиентов" />
+            <RegistryLabel index="08" title="Отзывы клиентов" />
           </div>
           <div className="flex items-end justify-start lg:col-span-3 lg:col-start-10 lg:justify-end">
             <Reveal delay={0.15}>
@@ -829,7 +831,7 @@ function Consultation() {
       <div className="relative mx-auto max-w-shell px-6 py-24 lg:px-10 lg:py-36">
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <RegistryLabel index="08" title="Запись на консультацию" />
+            <RegistryLabel index="09" title="Запись на консультацию" />
             <h2 className="mt-12 display-tight text-[clamp(2.2rem,4.6vw,3.8rem)] text-cream">
               <LinesUpOnScroll
                 lines={[

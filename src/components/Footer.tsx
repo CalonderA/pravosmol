@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { CONTACTS, PRACTICES } from '../lib/data';
 import { useSectionNav } from '../lib/sectionNav';
+import { LogoMark } from './LogoMark';
 import { Reveal } from './motion';
-import { ScalesIcon } from './ScalesIcon';
 
 const CHANNELS = [
   { label: 'WhatsApp', href: 'https://wa.me/79206629031', glyph: 'WA' },
@@ -22,15 +22,15 @@ export function Footer() {
         className="pointer-events-none absolute -bottom-10 left-1/2 w-full -translate-x-1/2 select-none text-center font-display font-semibold tracking-[0.14em] text-cream/[0.04]"
         style={{ fontSize: 'clamp(6rem, 17vw, 17rem)', lineHeight: 0.8 }}
       >
-        ПРАВОСМОЛ
+        ПРАВО-СМОЛ
       </div>
 
       <div className="relative mx-auto max-w-shell px-6 pb-10 pt-20 lg:px-10 lg:pt-28">
         <Reveal>
           <div className="flex items-center gap-4">
-            <ScalesIcon className="h-9 w-9 text-gold" />
+            <LogoMark className="h-12 w-12" />
             <div>
-              <p className="font-display text-xl font-semibold tracking-[0.22em] text-cream">ПРАВОСМОЛ</p>
+              <p className="font-display text-xl font-semibold tracking-[0.22em] text-cream">ПРАВО-СМОЛ</p>
               <p className="mt-1 text-[10px] uppercase tracking-registry text-fog">
                 Ваш надёжный юрист в Смоленске
               </p>
@@ -67,6 +67,7 @@ export function Footer() {
               {[
                 { label: 'О компании', hash: 'about' },
                 { label: 'Кто ведёт дела', hash: 'team' },
+                { label: 'Новости и кейсы', hash: 'news' },
                 { label: 'Этапы работы', hash: 'process' },
                 { label: 'Отзывы клиентов', hash: 'testimonials' },
                 { label: 'Оставить заявку', hash: 'consultation' },
@@ -128,8 +129,11 @@ export function Footer() {
         <div className="mt-20 h-px w-full bg-gold/15" />
 
         <div className="mt-6 flex flex-col gap-3 text-[12px] text-fog md:flex-row md:items-center md:justify-between">
-          <p>© {year} ПРАВОСМОЛ. Все права защищены.</p>
+          <p>© {year} ПРАВО-СМОЛ. Все права защищены.</p>
           <div className="flex flex-wrap gap-6">
+            <Link to="/admin" className="transition-colors hover:text-gold-soft">
+              Админ-панель
+            </Link>
             <Link to="/legal" className="transition-colors hover:text-gold-soft">
               Политика конфиденциальности
             </Link>

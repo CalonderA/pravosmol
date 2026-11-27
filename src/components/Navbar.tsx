@@ -4,12 +4,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CONTACTS } from '../lib/data';
 import { cn } from '../lib/utils';
 import { GoldButton } from './Buttons';
-import { ScalesIcon } from './ScalesIcon';
+import { LogoMark } from './LogoMark';
 import { LUXE } from './motion';
 
 const LINKS = [
   { label: 'О компании', hash: 'about' },
   { label: 'Направления', hash: 'practices' },
+  { label: 'Новости', hash: 'news' },
   { label: 'Команда', hash: 'team' },
   { label: 'Отзывы', hash: 'testimonials' },
 ];
@@ -45,10 +46,10 @@ export function Navbar() {
   };
 
   const wordmark = (
-    <Link to="/" className="group flex items-center gap-4" aria-label="ПРАВОСМОЛ — на главную">
-      <ScalesIcon className="h-8 w-8 text-gold transition-transform duration-700 ease-luxe group-hover:rotate-[8deg]" />
+    <Link to="/" className="group flex items-center gap-4" aria-label="ПРАВО-СМОЛ — на главную">
+      <LogoMark className="h-11 w-11" />
       <span className="font-display text-xl md:text-2xl font-semibold tracking-[0.22em] text-cream">
-        ПРАВОСМОЛ
+        ПРАВО-СМОЛ
       </span>
     </Link>
   );

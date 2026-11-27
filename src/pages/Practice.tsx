@@ -21,7 +21,7 @@ export default function Practice() {
 
 function PracticePage({ practice }: { practice: NonNullable<ReturnType<typeof getPractice>> }) {
   useSeo(
-    `${practice.title} в Смоленске — ПРАВОСМОЛ`,
+    `${practice.title} в Смоленске — ПРАВО-СМОЛ`,
     `${practice.lead} Состав услуг, порядок работы и обращение к юристу направления «${practice.title}» в Смоленске.`,
   );
   const idx = PRACTICES.findIndex((p) => p.slug === practice.slug);
